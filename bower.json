@@ -1,0 +1,26 @@
+{
+  "name": "chartkit",
+  "description": "Angular + Highcharts integration",
+  "main": "dist/chartkit.min.js",
+  "authors": [
+    "Jakub Hampl <kopomir@gmail.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "angularjs",
+    "highcharts"
+  ],
+  "homepage": "https://github.com/gampleman/chartkit",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "highcharts": "highcharts-release#~4.2.3",
+    "angular": "angularjs#~1.5.0"
+  }
+}

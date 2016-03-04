@@ -1,0 +1,26 @@
+{
+  "name": "chartkit",
+  "version": "0.1.0",
+  "description": "Angular + Highcharts integration",
+  "main": "dist/chartkit.min.js",
+  "scripts": {
+    "build": "uglifyjs -c pure_getters=true,unsafe=true,drop_console=true,drop_debugger=true,collapse_vars=true -m -o dist/chartkit.min.js src/chartkit.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gampleman/chartkit.git"
+  },
+  "keywords": [
+    "angularjs",
+    "highcharts"
+  ],
+  "author": "Jakub Hampl <kopomir@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gampleman/chartkit/issues"
+  },
+  "homepage": "https://github.com/gampleman/chartkit",
+  "devDependencies": {
+    "uglify-js": "^2.6.2"
+  }
+}
