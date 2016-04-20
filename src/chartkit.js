@@ -63,7 +63,7 @@
   };
 
   function wrapChart(chartName, chartFactory) {
-    return ['$injector', 'chartkitDefaults', '$compile', '$rootScope', '$templateRequest', '$q', function($injector, chartkitDefaults, $compile, $rootScope, $templateRequest, $q) {
+    return ['$injector', 'Highcharts', '$compile', '$rootScope', '$templateRequest', '$q', function($injector, Highcharts, $compile, $rootScope, $templateRequest, $q) {
       var chartSettings = $injector.invoke(chartFactory);
       var def = removeProps(chartSettings, ['scope', 'link', 'require', 'transform']);
       var promises = [];
@@ -112,14 +112,9 @@
                   };
                 }
               });
-              var options = angular.merge({
-                chart: {
-                  renderTo: element[0]
-                }
-              }, chartkitDefaults, chartSettings);
-              var chart = new Highcharts.Chart(options);
+              var chart = Highcharts.chart(element[0], chartSettings);
               chartDeferred.resolve(chart);
-              if (options.loading) {
+              if (chartSettings.loading) {
                 chart.showLoading();
               }
               function indexById(arr) {
@@ -137,10 +132,10 @@
               }
 
               if ((!def.scope || def.scope.data) && def.transform) {
-                var previousSeries = options.series || [];
+                var previousSeries = chartSettings.series || [];
                 scope.$watch('data', function(data) {
                   if (data && ((angular.isArray(data) && data.length > 0) || !angular.isArray(data))) {
-                    if (options.loading) {
+                    if (chartSettings.loading) {
                       chart.hideLoading();
                     }
                     var currentSeries = indexById(def.transform(data, chart, scope));
@@ -197,9 +192,5 @@
       return definition;
     }];
   }
-  angular.module('chartkit', []).value('chartkitDefaults', {
-    credits: {
-      enabled: false
-    }
-  });
+  angular.module('chartkit', []).constant('Highcharts', Highcharts);
 })(window.angular, window.Highcharts);
