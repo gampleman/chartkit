@@ -20,8 +20,11 @@
           text.linkFn(text.scope.$new(), function(element, scope) {
             wrapper.scope = scope;
             angular.extend(wrapper.scope, text.data);
-            wrapper.textStr = element[0].innerHTML;
+            while (wrapper.element.firstChild) {
+              wrapper.element.removeChild(wrapper.element.firstChild);
+            }
             wrapper.element.appendChild(element[0]);
+            wrapper.textStr = element[0].innerHTML;
             wrapper.htmlUpdateTransform();
           });
         } else {
@@ -34,6 +37,9 @@
       } else {
         origSetter.apply(this, arguments);
       }
+    }
+    if (arguments.length && arguments[0]) {
+      wrapper.attr({text: arguments[0]});
     }
     return wrapper;
   }
