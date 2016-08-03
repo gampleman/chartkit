@@ -97,7 +97,7 @@
                     value[eventName] = function() {
                       var self = this,
                         args = [].slice.call(arguments);
-                      scope.$apply(function() {
+                      scope.$applyAsync(function() {
                         cb.apply(self, args.concat([scope]));
                       });
                     };
