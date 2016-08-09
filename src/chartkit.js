@@ -110,22 +110,15 @@
                     }
                     var template = value.template;
                     obj.tooltipLinkFn = $compile(template);
-                    obj.formatter = function chartkitFormatter() {
-                      return {
-                        linkFn: obj.tooltipLinkFn,
-                        scope: scope,
-                        data: this
-                      };
-                    };
-                  } else if (angular.isFunction(value) && value.name === 'chartkitFormatter') {
-                    obj.formatter = function chartkitFormatter() {
-                      return {
-                        linkFn: obj.tooltipLinkFn,
-                        scope: scope,
-                        data: this
-                      };
-                    };
                   }
+                  
+                  obj.formatter = function() {
+                      return {
+                        linkFn: obj.tooltipLinkFn,
+                        scope: scope,
+                        data: this
+                      };
+                    };
                 }
               });
               var chart = Highcharts.chart(element[0], chartSettings);
