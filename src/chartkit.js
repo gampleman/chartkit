@@ -103,19 +103,22 @@
                     };
                   });
                 }
-                if (key === 'formatter' && value.template) {
-                  if (!obj.useHTML) {
-                    throw new Error('A formatter.template or formatter.templateUrl value must specify useHTML as true');
+                if (key === 'formatter') {
+                  if (value.template) {
+                    if (!obj.useHTML) {
+                      throw new Error('A formatter.template or formatter.templateUrl value must specify useHTML as true');
+                    }
+                    var template = value.template;
+                    obj.tooltipLinkFn = $compile(template);
                   }
-                  var template = value.template;
-                  var linkFn = $compile(template);
+                  
                   obj.formatter = function() {
-                    return {
-                      linkFn: linkFn,
-                      scope: scope,
-                      data: this
+                      return {
+                        linkFn: obj.tooltipLinkFn,
+                        scope: scope,
+                        data: this
+                      };
                     };
-                  };
                 }
               });
               var chart = Highcharts.chart(element[0], chartSettings);
