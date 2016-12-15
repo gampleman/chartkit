@@ -1,4 +1,4 @@
-# Charkit
+# Chartkit
 
 Chartkit provides deep integration between the Angular framework and the wonderful
 Highcharts library.
@@ -97,7 +97,7 @@ software, you find yourself building tooltips like this:
 
 For this rendering tooltips via string concatenation becomes quickly annoying. Finally it
 usually involves slightly different templating language then you use in the rest of the
-app (we used Lo-dash's `_.template` function before Charkit). This becomes quickly annoying.
+app (we used Lo-dash's `_.template` function before Chartkit). This becomes quickly annoying.
 
 Chartkit solves this problem by allowing you to pass an object anywhere where Highcharts
 supports a `formatter` function (i.e. tooltips, dataLabels, axis labels). This object
